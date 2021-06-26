@@ -15,6 +15,9 @@ const Discussions = () => {
 							<Card>
 								<Card.Body>
 									<Card.Title>Example Title</Card.Title>
+									<Card.Subtitle className='mb-2 text-muted'>
+										singhaniaakshat1@gmail.com
+									</Card.Subtitle>
 									<Card.Text>
 										Description exampleDescription exampleDescription
 										exampleDescription exampleDescription exampleDescription

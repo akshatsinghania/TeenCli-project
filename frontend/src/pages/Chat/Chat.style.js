@@ -17,7 +17,7 @@ export const ChatWrapper = styled(Container)`
 			border-style: solid;
 			outline: none;
 			border-width: 0;
-			padding: 1%;
+			padding: 10px;
 		}
 		.send-button {
 			margin: auto 2%;
@@ -26,14 +26,12 @@ export const ChatWrapper = styled(Container)`
 	}
 `;
 export const ChatMessage = styled.div`
-	margin: 5% 3%;
-	border-style: solid;
-	border-radius: 10px;
-	border-color: lightgray;
-	padding: 1%;
+	margin: 3%;
 	height: 100%;
-	width: fit-content;
+	width: 100%;
 	.title {
-		margin-top: -30%;
+		margin: 0;
+		text-decoration: underline;
+		font-size: large;
 	}
 `;

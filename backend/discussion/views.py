@@ -74,20 +74,24 @@ def Finish(request, id):
     return JsonResponse({"status": "Success"})
 
 
-def Get(req):
-    discussions = Discussions.get()
-    return JsonResponse(discussions.val())
-
-
-@api_view(["POST"])
+@api_view(['POST'])
 def Create(request):
+    global id
     serializer = DiscussionSerializer(data=request.data)
     if serializer.is_valid():
-        print(serializer.data["title"])
-        print(serializer.data["description"])
-        # data =
-    return JsonResponse({"status": "Success"})
+        title = serializer.data['title']
+        print(title)
+        desc = serializer.data['description']
+        print(desc)
+        id += 1
+        data = {
+            id: {
+                "title": title,
+                "description": desc,
+                "summary": "Not found",
+            }
+        }
+        db.child("teencli-project-default-rtdb").child("discussions").push(data)
+        return JsonResponse({"status": "success"})
+    return JsonResponse({"staus": "failed"})
 
-
-def Message(request, id):
-    pass

@@ -44,7 +44,7 @@ const NewsCard = ({ item }) => {
               <b>{item.source.name}</b>
             </a>
           </span>
-          <button className = 'discusButton'>Discuss</button>
+          <button className = 'discusButton'>Discus</button>
         </div>
       </div>
     </div>

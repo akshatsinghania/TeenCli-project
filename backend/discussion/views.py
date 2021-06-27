@@ -43,9 +43,7 @@ id = 1
 
 def Finish(request, id):
 
-    # Setting completed to true
-    data = {"completed": True}
-    db.child("discussions").child(id).update(data)
+    db.child("discussions").child("id/completed").set(True)
 
     # Getting the msgs and converting it into prompt format
     string = "Convert my short hand into a first-hand account of the discussion:\n\n"
@@ -74,14 +72,14 @@ def Finish(request, id):
     return JsonResponse({"status": "Success"})
 
 
-@api_view(['POST'])
+@api_view(["POST"])
 def Create(request):
     global id
     serializer = DiscussionSerializer(data=request.data)
     if serializer.is_valid():
-        title = serializer.data['title']
+        title = serializer.data["title"]
         print(title)
-        desc = serializer.data['description']
+        desc = serializer.data["description"]
         print(desc)
         id += 1
         data = {
@@ -94,4 +92,3 @@ def Create(request):
         db.child("teencli-project-default-rtdb").child("discussions").push(data)
         return JsonResponse({"status": "success"})
     return JsonResponse({"staus": "failed"})
-

@@ -5,11 +5,14 @@ import { Button } from 'react-bootstrap';
 import { RiSendPlaneLine } from 'react-icons/ri';
 import { db } from '../../api/db';
 import { Context } from '../../Context/Auth';
+import axios from 'axios';
+import { Redirect } from 'react-router-dom';
 
 const Chat = () => {
 	const [message, setMessage] = useState('');
 	const [data, setData] = useState({ title: '', messages: [] });
 	const { id } = useParams();
+	const [redirect, setRedirect] = useState(false);
 	const {
 		auth: { logged, email },
 	} = useContext(Context);
@@ -35,12 +38,18 @@ const Chat = () => {
 			message: message,
 		});
 	};
-
+	const finish = async () => {
+		axios.post('http://127.0.0.1:8000/discussions/finish/67576').then((res) => {
+			if (res.data.status === 'Success') {
+				setRedirect(true);
+			}
+		});
+	};
 	return (
 		<ChatWrapper>
 			<div className='title-container'>
 				<h1>{data.title}</h1>
-				<Button size='sm' variant='primary'>
+				<Button onClick={finish} size='sm' variant='primary'>
 					Mark discussion as finished
 				</Button>
 			</div>
@@ -65,6 +74,7 @@ const Chat = () => {
 					className='send-button'
 				/>
 			</form>
+			{redirect && <Redirect to={`/discussion/`} />}
 		</ChatWrapper>
 	);
 };

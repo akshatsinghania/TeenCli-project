@@ -4,8 +4,8 @@ from . import views
 urlpatterns = [ 
 
 	# url to create the summary
-	path('/finish/<str:id>', views.Finish, name='finish'),
+	path('finish/<str:id>', views.Finish, name='finish'),
 
 	# url to create a discussion room; on progress
-	# path('/')
+	path('', views.Create, name='create'),
 ]

@@ -1,10 +1,13 @@
-from re import L
 from django.http.response import HttpResponse
 from django.shortcuts import render
+from rest_framework import serializers
+from .serializers import DiscussionSerializer
 import os
 import openai
-
 from django.http import JsonResponse
+# from rest_framework.renderers import JSONRenderer
+from rest_framework.response import Response
+from rest_framework.decorators import api_view
 
 # this is needed for the hiding of open api. i will tell you how to configure it
 
@@ -32,6 +35,7 @@ firebase = Firebase(config)
 
 db = firebase.database()
 
+id = 1
 
 def Finish(request, id):
 
@@ -63,5 +67,16 @@ def Finish(request, id):
 
     return JsonResponse({"status": "Success"})
 
+@api_view(['POST'])
+def Create(request):
+	serializer = DiscussionSerializer(data=request.data)
+	if serializer.is_valid():
+		print(serializer.data['title'])
+		print(serializer.data['description'])
+		# data =
+	return JsonResponse({"status": "Success"})
+
+
+
 def Message(request, id):
-    pass
+    pass 

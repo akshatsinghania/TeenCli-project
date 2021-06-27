@@ -1,5 +1,6 @@
 import firebase from 'firebase/app';
 import 'firebase/auth';
+import 'firebase/database';
 
 const firebaseConfig = {
 	apiKey: 'AIzaSyCDSHRTAt4klqbgezITradCwvCr1DUQgBk',
@@ -11,6 +12,7 @@ const firebaseConfig = {
 };
 
 export const app = firebase.initializeApp(firebaseConfig);
+export const db = app.database();
 
 export const Register = async (email, password) => {
 	return await app

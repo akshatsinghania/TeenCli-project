@@ -1,13 +1,13 @@
 import React from "react";
 import { Button, InputGroup, FormControl, Alert } from "react-bootstrap";
 import { useState, useContext } from "react";
-import { formWrapper } from "./CreateDiscussion.style";
+import { FormWrapper } from "./CreateDiscussion.style";
 
 const CreateDiscussion = () => {
   const [title, setTitle] = useState("");
   const [description, setdescription] = useState("");
   return (
-    <formWrapper>
+    <FormWrapper>
       <h1 className="title">Create Discussion</h1>
       <form className="form">
         <InputGroup className="mb-4 input">
@@ -32,10 +32,10 @@ const CreateDiscussion = () => {
         </InputGroup>
 
         <Button type="submit" variant="primary">
-          SignIn
+          Create Discussion
         </Button>
       </form>
-    </formWrapper>
+    </FormWrapper>
   );
 };
 

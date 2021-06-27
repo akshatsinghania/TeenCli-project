@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const formWrapper = styled.div`
+export const FormWrapper = styled.div`
 	margin: 10%;
 	h1 {
 		text-align: center;
@@ -9,8 +9,6 @@ export const formWrapper = styled.div`
 		margin: auto 10%;
 		display: flex;
 		flex-direction: column;
-        width: 50%;
-        margin: auto;
 	}
 	.input {
 		width: 40% !important;

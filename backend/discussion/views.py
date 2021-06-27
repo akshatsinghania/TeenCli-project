@@ -1,10 +1,14 @@
-from re import L
 from django.http.response import HttpResponse
 from django.shortcuts import render
+from rest_framework import serializers
+from .serializers import DiscussionSerializer
 import os
 import openai
-
 from django.http import JsonResponse
+# from rest_framework.renderers import JSONRenderer
+from rest_framework.response import Response
+from rest_framework.decorators import api_view
+
 
 # this is needed for the hiding of open api. i will tell you how to configure it
 
@@ -33,27 +37,51 @@ firebase = Firebase(config)
 db = firebase.database()
 
 
-def discussions(request, pk):
-	id = pk
-	# msg = db.child("Rooms").child(id).child("messages").get().val()
-	# get the msg data and make it a string and pass it to openapi
+id = 1
 
-	# response = openai.Completion.create(
+def Finish(request, id):
+
+    # Setting completed to true
+    data = {"completed": True}
+    db.child("discussions").child(id).update(data)
+
+    # Getting the msgs and converting it into prompt format
+    string = "Convert my short hand into a first-hand account of the discussion:\n\n"
+    msgs = db.child("discussions/" + id).child("messages").get()
+    for msg in msgs.each():
+        string += msg.val()['from'] + ": " + msg.val()['message'] + "\n"
+    print(string)
+
+    # Giving the string to openAI
+    # response = openai.Completion.create(
 	# engine="davinci-instruct-beta",
-	# prompt="",
+	# prompt=string,
+
 	# temperature=0.7,
 	# max_tokens=64,
 	# top_p=1.0,
 	# frequency_penalty=0.0,
 	# presence_penalty=0.0
 	# )
-    data = {
-        "discussion":[
-            {
-                "title":"example"
-            }
-        ]
-    }
-    dataLIst = ""
-    for x :
-    return JsonResponse(data)
+
+    # summary = response.choices[0].text
+
+    # Updating summary
+    # db.child("discussions/" + id).update({'summary': summary})
+
+    return JsonResponse({"status": "Success"})
+
+@api_view(['POST'])
+def Create(request):
+	serializer = DiscussionSerializer(data=request.data)
+	if serializer.is_valid():
+		print(serializer.data['title'])
+		print(serializer.data['description'])
+		# data =
+	return JsonResponse({"status": "Success"})
+
+
+
+def Message(request, id):
+    pass 
+

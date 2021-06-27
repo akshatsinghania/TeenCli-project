@@ -2,10 +2,12 @@ from django.urls import path
 
 from . import views
 
-urlpatterns = [
-    path('', views.discussions, name='index'),
-    path('', views.discussions, name='index',post),
-    path('discussion/:id/finish', views.discussion, name='index'),
-    path('discussion/:id/newmessage', views.discussion, name='index'),
-    path('/:id/summarize', views.discussions, name='index'),
+urlpatterns = [ 
+
+	# url to create the summary
+	path('finish/<str:id>', views.Finish, name='finish'),
+
+	# url to create a discussion room; on progress
+	path('', views.Create, name='create'),
+
 ]

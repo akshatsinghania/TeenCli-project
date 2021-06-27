@@ -8,7 +8,7 @@ const SignUp = () => {
 	const { setAuth, auth } = useContext(Context);
 	const [email, setEmail] = useState('');
 	const [password, setPasword] = useState('');
-	const [error, setError] = useState(0);
+	const [error, setError] = useState(false);
 
 	const signUp = async (e) => {
 		e.preventDefault();

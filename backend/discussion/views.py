@@ -73,12 +73,24 @@ def Finish(request, id):
 
 @api_view(['POST'])
 def Create(request):
-	serializer = DiscussionSerializer(data=request.data)
-	if serializer.is_valid():
-		print(serializer.data['title'])
-		print(serializer.data['description'])
-		# data =
-	return JsonResponse({"status": "Success"})
+    global id
+    serializer = DiscussionSerializer(data=request.data)
+    if serializer.is_valid():
+        title = serializer.data['title']
+        print(title)
+        desc = serializer.data['description']
+        print(desc)
+        id += 1
+        data = {
+            id: {
+                "title": title,
+                "description": desc,
+                "summary": "Not found",
+            }
+        }
+        db.child("teencli-project-default-rtdb").child("discussions").push(data)
+        return JsonResponse({"status": "success"})
+    return JsonResponse({"staus": "failed"})
 
 
 

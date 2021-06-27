@@ -14,7 +14,7 @@ const News = () => {
 	const fetchdata = async () => {
 		try {
 			const news = await axios.get(
-				`https://newsapi.org/v2/top-headlines?country=in&apiKey=b5192746245f4d3e83ad09d377381640&pageSize=${loadMore}&category=${category}`,
+				`https://newsapi.org/v2/top-headlines?country=us&apiKey=b5192746245f4d3e83ad09d377381640&pageSize=${loadMore}&category=${category}`,
 			);
 			setarticles(news.data.articles);
 			setresult(news.data.totalResults);

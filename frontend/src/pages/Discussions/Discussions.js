@@ -12,7 +12,7 @@ const Discussions = () => {
 			if (snapshot.val()) {
 				var newdata = [];
 				snapshot.forEach((v) => {
-					newdata.push(v.val());
+					if (!v.val().completed) newdata.push(v.val());
 				});
 				setDiscussions(newdata);
 			}

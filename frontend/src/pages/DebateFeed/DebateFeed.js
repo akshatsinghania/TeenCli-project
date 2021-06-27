@@ -10,7 +10,7 @@ const DebateFeed = () => {
 			if (snapshot.val()) {
 				var newdata = [];
 				snapshot.forEach((v) => {
-					newdata.push(v.val());
+					if (v.val().completed) newdata.push(v.val());
 				});
 				setDiscussions(newdata);
 			}
@@ -21,16 +21,14 @@ const DebateFeed = () => {
 			<h1>Debate Feed</h1>
 			<div className='summaries__list'>
 				{discussions.map((v) => {
-					if (v.completed) {
-						return (
-							<Card>
-								<Card.Body>
-									<Card.Title>{v.title}</Card.Title>
-									<Card.Text>{v.summary}</Card.Text>
-								</Card.Body>
-							</Card>
-						);
-					}
+					return (
+						<Card>
+							<Card.Body>
+								<Card.Title>{v.title}</Card.Title>
+								<Card.Text>{v.summary}</Card.Text>
+							</Card.Body>
+						</Card>
+					);
 				})}
 			</div>
 		</DebateFeedWrapper>

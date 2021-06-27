@@ -16,10 +16,11 @@ export const FormWrapper = styled.div`
 	}
 	.form button {
 		margin-top: 1%;
-		width: 20%;
+		width: 30%;
 		margin: auto;
 		padding: 10px;
 		border-style: solid;
 		border-radius: 5px;
+		white-space: nowrap;
 	}
 `;

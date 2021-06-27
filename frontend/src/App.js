@@ -9,6 +9,7 @@ import Discussions from './pages/Discussions/Discussions';
 import DebateFeed from './pages/DebateFeed/DebateFeed';
 import Chat from './pages/Chat/Chat';
 import News from './pages/News/News';
+import CreateDiscussion from './pages/CreateDiscussion/CreateDiscussion';
 
 const App = () => {
 	const {
@@ -19,6 +20,7 @@ const App = () => {
 			<Router>
 				<NavigationBar />
 				<Switch>
+					<Route path='/creatediscussion' component={CreateDiscussion} />
 					<Route path='/discussion/:id' component={Chat} />
 					<Route path='/discussion' component={Discussions} />
 					<Route path='/summaries' component={DebateFeed} />

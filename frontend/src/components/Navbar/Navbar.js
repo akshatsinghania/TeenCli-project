@@ -17,6 +17,12 @@ const NavigationBar = () => {
 	return (
 		<Navbar bg='light' expand='lg' style={{ width: '100%' }}>
 			<Navbar.Brand as={Link} to='/'>
+				<img
+					alt=''
+					src='/logo.svg'
+					style={{ width: '20%', margin: 0, padding: 0 }}
+					className='d-inline-block align-top'
+				/>
 				DebateHouse
 			</Navbar.Brand>
 			<Navbar.Toggle aria-controls='basic-navbar-nav' />

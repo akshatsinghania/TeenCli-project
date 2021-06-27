@@ -33,10 +33,12 @@ export const ChatMessage = styled.div`
 	margin: 3%;
 	height: 100%;
 	width: 100%;
+
 	font-size: larger !important;
 	.title {
 		margin: 0;
 		text-decoration: underline;
 		font-size: x-large;
-	}
+
+	  }
 `;

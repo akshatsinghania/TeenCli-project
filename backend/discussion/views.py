@@ -33,7 +33,7 @@ firebase = Firebase(config)
 db = firebase.database()
 
 
-def Summarize(request, pk):
+def discussions(request, pk):
 	id = pk
 	# msg = db.child("Rooms").child(id).child("messages").get().val()
 	# get the msg data and make it a string and pass it to openapi
@@ -47,6 +47,13 @@ def Summarize(request, pk):
 	# frequency_penalty=0.0,
 	# presence_penalty=0.0
 	# )
-
-	data = {"summary": "it's just a dummy data"}
-	return JsonResponse(data)
+    data = {
+        "discussion":[
+            {
+                "title":"example"
+            }
+        ]
+    }
+    dataLIst = ""
+    for x :
+    return JsonResponse(data)

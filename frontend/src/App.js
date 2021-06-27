@@ -7,6 +7,7 @@ import NavigationBar from './components/Navbar/Navbar';
 import { Context } from './Context/Auth';
 import Discussions from './pages/Discussions/Discussions';
 import DebateFeed from './pages/DebateFeed/DebateFeed';
+import Chat from './pages/Chat/Chat';
 
 const App = () => {
 	const {
@@ -17,8 +18,10 @@ const App = () => {
 			<Router>
 				<NavigationBar />
 				<Switch>
+					<Route path='/discussion/:id' component={Chat} />
 					<Route path='/discussion' component={Discussions} />
 					<Route path='/summaries' component={DebateFeed} />
+
 					<Route path='/' component={Home} />
 				</Switch>
 			</Router>

@@ -9,6 +9,7 @@ from django.http import JsonResponse
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 
+
 # this is needed for the hiding of open api. i will tell you how to configure it
 
 # import environ
@@ -35,6 +36,7 @@ firebase = Firebase(config)
 
 db = firebase.database()
 
+
 id = 1
 
 def Finish(request, id):
@@ -54,12 +56,14 @@ def Finish(request, id):
     # response = openai.Completion.create(
 	# engine="davinci-instruct-beta",
 	# prompt=string,
+
 	# temperature=0.7,
 	# max_tokens=64,
 	# top_p=1.0,
 	# frequency_penalty=0.0,
 	# presence_penalty=0.0
 	# )
+
     # summary = response.choices[0].text
 
     # Updating summary
@@ -80,3 +84,4 @@ def Create(request):
 
 def Message(request, id):
     pass 
+

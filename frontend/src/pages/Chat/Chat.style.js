@@ -3,6 +3,10 @@ import { Container, Card } from 'react-bootstrap';
 
 export const ChatWrapper = styled(Container)`
 	margin-top: 2%;
+	.title-container {
+		display: flex;
+		justify-content: space-between;
+	}
 	.message-input {
 		position: fixed;
 		bottom: 0;
@@ -29,9 +33,10 @@ export const ChatMessage = styled.div`
 	margin: 3%;
 	height: 100%;
 	width: 100%;
+	font-size: larger !important;
 	.title {
 		margin: 0;
 		text-decoration: underline;
-		font-size: large;
+		font-size: x-large;
 	}
 `;

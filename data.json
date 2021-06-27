@@ -1,0 +1,36 @@
+{
+	"discussions": [
+		{
+			"id": "1",
+			"title": "example",
+			"description": "asdadas",
+			"createdBy": "singhaniaakshat1@gmail.com",
+			"messages": [
+				{
+					"from": "singhaniaakshat1@gmail.com",
+					"message": "hey!"
+				}
+			],
+			"completed": false,
+			"summary": ""
+		},
+		{
+			"id": "1",
+			"title": "example",
+			"description": "asdadas",
+			"createdBy": "singhaniaakshat1@gmail.com",
+			"messages": [
+				{
+					"from": "singhaniaakshat1@gmail.com",
+					"message": "hey!"
+				},
+				{
+					"from": "singhaniaakshat1@gmail.com",
+					"message": "hey!"
+				}
+			],
+			"completed": false,
+			"summary": ""
+		}
+	]
+}

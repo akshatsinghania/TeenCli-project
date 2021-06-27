@@ -1,9 +1,23 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { DiscusssionWrapper, Discussion as Card } from './Discussions.style';
 import { Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import { db } from '../../api/db';
 
 const Discussions = () => {
+	const [discussions, setDiscussions] = useState([]);
+	useEffect(() => {
+		var starCountRef = db.ref('discussions');
+		starCountRef.on('value', (snapshot) => {
+			if (snapshot.val()) {
+				var newdata = [];
+				snapshot.forEach((v) => {
+					if (!v.val().completed) newdata.push(v.val());
+				});
+				setDiscussions(newdata);
+			}
+		});
+	}, []);
 	return (
 		<DiscusssionWrapper>
 			<div className='title-container'>
@@ -17,31 +31,22 @@ const Discussions = () => {
 				</Button>
 			</div>
 			<div className='discussions__list'>
-				{Array(10)
-					.fill()
-					.map(() => {
-						return (
-							<Card>
-								<Card.Body>
-									<Card.Title>Example Title</Card.Title>
-									<Card.Subtitle className='mb-2 text-muted'>
-										singhaniaakshat1@gmail.com
-									</Card.Subtitle>
-									<Card.Text>
-										Description exampleDescription exampleDescription
-										exampleDescription exampleDescription exampleDescription
-										exampleDescription example
-									</Card.Text>
-									<Button
-										as={Link}
-										to='/discussion/exampleId'
-										variant='primary'>
-										Join Discussion
-									</Button>
-								</Card.Body>
-							</Card>
-						);
-					})}
+				{discussions.map((v, i) => {
+					return (
+						<Card key={i}>
+							<Card.Body>
+								<Card.Title>{v.title}</Card.Title>
+								<Card.Subtitle className='mb-2 text-muted'>
+									{v.from}
+								</Card.Subtitle>
+								<Card.Text>{v.description}</Card.Text>
+								<Button as={Link} to={`/discussion/${v.id}`} variant='primary'>
+									Join Discussion
+								</Button>
+							</Card.Body>
+						</Card>
+					);
+				})}
 			</div>
 		</DiscusssionWrapper>
 	);

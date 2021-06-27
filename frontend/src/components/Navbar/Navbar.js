@@ -24,14 +24,14 @@ const NavigationBar = () => {
 				<Nav className='mr-auto'>
 					{logged && (
 						<>
-							<Nav.Link as={Link} to='/news'>
-								News
-							</Nav.Link>
 							<Nav.Link as={Link} to='/discussion'>
 								Discussion Groups
 							</Nav.Link>
 							<Nav.Link as={Link} to='/summaries'>
 								Summaries
+							</Nav.Link>
+							<Nav.Link as={Link} to='/news'>
+								News
 							</Nav.Link>
 						</>
 					)}

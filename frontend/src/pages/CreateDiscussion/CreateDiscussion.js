@@ -16,10 +16,12 @@ const CreateDiscussion = () => {
 	const createDiscussion = async (e) => {
 		e.preventDefault();
 		var id = Math.floor(Math.random() * 1000000);
-		await db.ref(`discussion/${id}`).set({
+		await db.ref(`discussions/${id}`).set({
 			title: title,
 			description: description,
 			from: email,
+			id: id,
+			messages: [{ message: 'group created', from: 'admin' }],
 		});
 		setRedirect(id);
 	};

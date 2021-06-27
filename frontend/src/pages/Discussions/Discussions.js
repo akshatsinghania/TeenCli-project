@@ -9,7 +9,13 @@ const Discussions = () => {
 	useEffect(() => {
 		var starCountRef = db.ref('discussions');
 		starCountRef.on('value', (snapshot) => {
-			setDiscussions(snapshot.val());
+			if (snapshot.val()) {
+				var newdata = [];
+				snapshot.forEach((v) => {
+					newdata.push(v.val());
+				});
+				setDiscussions(newdata);
+			}
 		});
 	}, []);
 	return (

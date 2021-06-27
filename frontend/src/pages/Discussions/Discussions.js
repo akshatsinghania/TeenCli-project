@@ -6,7 +6,16 @@ import { Link } from 'react-router-dom';
 const Discussions = () => {
 	return (
 		<DiscusssionWrapper>
-			<h1>Discussion</h1>
+			<div className='title-container'>
+				<h1>Discussion</h1>
+				<Button
+					className='new-discussion'
+					variant='primary'
+					as={Link}
+					to='/createDiscussion'>
+					New Discussion
+				</Button>
+			</div>
 			<div className='discussions__list'>
 				{Array(10)
 					.fill()

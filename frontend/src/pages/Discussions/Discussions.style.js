@@ -10,6 +10,13 @@ export const DiscusssionWrapper = styled(Container)`
 		display: flex;
 		flex-wrap: wrap;
 	}
+	.title-container {
+		display: flex;
+		justify-content: space-between;
+		.new-discussion {
+			height: 100%;
+		}
+	}
 	@media only screen and (max-width: 600px) {
 		.discussions__list {
 			flex-direction: column;

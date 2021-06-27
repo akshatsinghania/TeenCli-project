@@ -10,7 +10,7 @@ import { Redirect } from 'react-router-dom';
 
 const Chat = () => {
 	const [message, setMessage] = useState('');
-	const [data, setData] = useState({ title: '', messages: [] });
+	const [data, setData] = useState({ title: '', messages: [], from: '' });
 	const { id } = useParams();
 	const [redirect, setRedirect] = useState(false);
 	const {
@@ -18,16 +18,22 @@ const Chat = () => {
 	} = useContext(Context);
 
 	useEffect(() => {
-		var starCountRef = db.ref('discussions/' + id + '/messages');
-		starCountRef.on('value', (snapshot) => {
-			if (snapshot.val()) {
-				var newdata = [];
-				snapshot.forEach((v) => {
-					newdata.push(v.val());
-				});
-				setData({ ...data, messages: newdata });
-			}
-		});
+		const get = async () => {
+			var starCountRef = db.ref('discussions/' + id + '/messages');
+			const data = db.ref().child('discussions/' + id);
+
+			const { title, from } = await (await data.get()).val();
+			starCountRef.on('value', (snapshot) => {
+				if (snapshot.val()) {
+					var newdata = [];
+					snapshot.forEach((v) => {
+						newdata.push(v.val());
+					});
+					setData({ messages: newdata, title: title, from: from });
+				}
+			});
+		};
+		get();
 	}, []);
 
 	const sendMessage = (e) => {
@@ -37,21 +43,27 @@ const Chat = () => {
 			from: email,
 			message: message,
 		});
+		setMessage('');
 	};
 	const finish = async () => {
-		axios.post('http://127.0.0.1:8000/discussions/finish/67576').then((res) => {
+		axios.post(`http://127.0.0.1:8000/discussions/finish/${id}`).then((res) => {
 			if (res.data.status === 'Success') {
 				setRedirect(true);
 			}
 		});
 	};
+
 	return (
 		<ChatWrapper>
 			<div className='title-container'>
 				<h1>{data.title}</h1>
-				<Button onClick={finish} size='sm' variant='primary'>
-					Mark discussion as finished
-				</Button>
+				{data.from === email && (
+					<>
+						<Button onClick={finish} size='sm' variant='primary'>
+							Mark discussion as finished
+						</Button>
+					</>
+				)}
 			</div>
 			{data.messages.map((v, i) => {
 				return (
